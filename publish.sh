@@ -22,5 +22,6 @@ cd "${HERE}"
 
 git add content 
 git commit -m "blog content update: $(date '+%Y-%m-%d %H:%M')"
+git ps
 
 echo done.
