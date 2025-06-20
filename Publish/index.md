@@ -18,7 +18,7 @@ Description: 백엔드 개발자 Vito의 기술 블로그
 ## Recently update
 
 ```dataviewjs
-const pages = dv.pages('"content/Articles"')
+const pages = dv.pages('"Publish/Articles"')
   .sort(p => p.file.mtime, 'desc')
   .limit(10);
 
