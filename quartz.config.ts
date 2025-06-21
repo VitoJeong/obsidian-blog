@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "JAZZYBYTE",
+    pageTitle: "JazzyByte",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -40,15 +40,15 @@ const config: QuartzConfig = {
           textHighlight: "#fff23688",
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#1c1c1f",              // 배경: 너무 어둡지 않고 눈부심 없음
+          lightgray: "#3a3a3d",          // 서브 배경: 약간 더 부드럽게
+          gray: "#7a7a7a",               // 중간 텍스트/테두리
+          darkgray: "#e0e0e0",           // 보조 텍스트: 명도 ↑
+          dark: "#f5f5f5",               // 메인 텍스트: 완전한 흰색보다 덜 부담스럽게
+          secondary: "#88a9c3",          // 링크/포인트 컬러: 명도 ↑
+          tertiary: "#91b5a4",           // 보조 포인트 컬러: 채도 ↓
+          highlight: "rgba(160, 180, 200, 0.12)",  // 블럭 강조: 명도·투명도 조정
+          textHighlight: "#f1c40f88",    // 텍스트 강조: 눈에 띄게
         },
       },
     },
