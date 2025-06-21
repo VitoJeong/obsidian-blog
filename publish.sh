@@ -1,7 +1,7 @@
 #!/bin/bash
 
 HERE="$( cd "$(dirname "$0")" ; pwd -P )"
-CONTENT_DIR_PATH="${HERE}/content"
+CONTENT_DIR_PATH="${HERE}/Publish"
 SOURCE_DIR_PATH="${HERE}/../Publish"
 
 if [ ! -d "${SOURCE_DIR_PATH}" ]; then
