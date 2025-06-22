@@ -20,7 +20,7 @@ rsync -avz "${SOURCE_DIR_PATH}/" "${CONTENT_DIR_PATH}"
 echo sync
 cd "${HERE}"
 
-git add content 
+git add Publish 
 git commit -m "blog content update: $(date '+%Y-%m-%d %H:%M')"
 git ps
 
