@@ -6,9 +6,9 @@ Spring WebFlux 기반 게이트웨이 애플리케이션에 OpenTelemetry를 이
     
 - `spring-webflux` 계측 라이브러리가 생성해야 할 **최상위 Span이 유실**되었다.
     
-- 직접 생성한 커스텀 Span들이 부모를 잃은 **고아(Orphan) Span**이 되어 트레이스 체인이 끊어졌다.
+- Span은 트리와 같은 형태로 이어지는데, 직접 생성한 커스텀 Span들이 부모를 잃은 **고아(Orphan) Span**이 되어 트레이스 체인이 끊어졌다.
     
-문제를 해결하는 과정에서 이해가 부족한 상황에서 기술을 도입하고 사용하려는 과정에서 
+기술에 대한 이해가 부족한 상황에서 도입하고 사용하려니, 또 다른 문제를 낳고 해결하는데는 생각보다 많은 시간이 소요됐다. 
 ## 2. 리액티브 프로그래밍의 처리 방식
 
 
@@ -101,10 +101,11 @@ graph TD
 fun handle(exchange: ServerWebExchange): Mono<Void> {
     // ...
     val mySpan = tracer.spanBuilder("my-operation").startSpan()
-    val scope = span.makeCurrent(); // 문제의 코드!!
+    val scope = span.makeCurrent(); // 문제의 코드!! (메인스레드 영역)
     
     return someReactiveChain()
         .doOnSuccess {  
+        // 이벤트루프를 통해 처리하는 별도의 스레드에서 처리
             filterChainSpan.addEvent("filter.chain.completed")  
             scope.close()  
         }
