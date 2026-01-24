@@ -11,7 +11,15 @@ mtime: 2025-06-20
 
 #### 기존 코드
 ```java 
+abstract class LlmProcessor {
 
+	abstract void processInternal();
+	
+	
+}
+
+
+class Step1Processor extends LlmProcessor
 ```
 
 ---

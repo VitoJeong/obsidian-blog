@@ -104,8 +104,8 @@ fun handle(exchange: ServerWebExchange): Mono<Void> {
     val scope = span.makeCurrent(); // 문제의 코드!! (메인스레드 영역)
     
     return someReactiveChain()
+		// 리액터 스케줄러에서 할당한 별도의 스레드에서 처리
         .doOnSuccess {  
-        // 이벤트루프를 통해 처리하는 별도의 스레드에서 처리
             filterChainSpan.addEvent("filter.chain.completed")  
             scope.close()  
         }
