@@ -5,7 +5,7 @@ tags:
 ---
 ## 1. 문제 상황
 
-리액티브(Spring WebFlux)기 어플리케이션에 OpenTelemetry를 이용해 커스텀 Span 추적 기능을 구현했으나, 다음과 같은 문제가 발생했다.
+리액티브(Spring WebFlux) 기반의 어플리케이션에 OpenTelemetry를 이용해 커스텀 Span 추적 기능을 구현했으나, 다음과 같은 문제가 발생했다.
 
 - Jaeger UI에서 `clock skew adjustment disabled` 경고가 발생하며, **종료되지 않은 Span이 매우 긴 시간 동안 이어지는 것처럼 보였다.**
     
