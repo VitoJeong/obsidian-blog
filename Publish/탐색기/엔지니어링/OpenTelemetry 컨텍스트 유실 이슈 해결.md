@@ -1,3 +1,8 @@
+---
+tags:
+  - webflux
+  - reactive-programming
+---
 ## 1. 문제 상황
 
 리액티브(Spring WebFlux)기 어플리케이션에 OpenTelemetry를 이용해 커스텀 Span 추적 기능을 구현했으나, 다음과 같은 문제가 발생했다.
