@@ -45,15 +45,22 @@ export default ((userOpts?: Partial<Options>) => {
 
             return (
               <li class="recent-li">
-                <div class="section">
-                  <div class="desc">
+                <div class="recent-header">
+                  <div class="recent-title">
                     <h3>
                       <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
                         {title}
                       </a>
                     </h3>
                   </div>
-                  {opts.showTags && (
+                  {page.dates && (
+                    <div class="recent-date">
+                      <Date date={getDate(cfg, page)!} locale={cfg.locale} />
+                    </div>
+                  )}
+                </div>
+                <div class="section">
+                  {opts.showTags && tags.length > 0 && (
                     <ul class="tags">
                       {tags.map((tag) => (
                         <li>
@@ -66,11 +73,6 @@ export default ((userOpts?: Partial<Options>) => {
                         </li>
                       ))}
                     </ul>
-                  )}
-                  {page.dates && (
-                    <p class="meta">
-                      <Date date={getDate(cfg, page)!} locale={cfg.locale} />
-                    </p>
                   )}
                 </div>
               </li>
