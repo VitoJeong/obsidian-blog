@@ -1,61 +1,75 @@
 .recent-notes-index {
   & > h3 {
-    margin: 3rem 0 1rem 0;
+    margin: 4rem 0 1rem 0;
     font-size: 1.5rem;
+    border-bottom: 2px solid var(--tertiary);
+    display: inline-block;
+    padding-bottom: 0.3rem;
   }
 
   & > ul.recent-ul {
     list-style: none;
     padding-left: 0;
+    margin: 0;
 
     & > li.recent-li {
       margin: 0;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--lightgray);
+      padding: 1.2rem 0; /* 각 행의 위아래 여백 */
+      display: flex;
+      flex-direction: column;
 
-      &:last-child {
-        border-bottom: none;
+      /* 마지막 항목을 제외하고 수평선(::after 방식) 추가 */
+      &:not(:last-child)::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: var(--lightgray);
+        margin-top: 1.2rem; /* 제목-태그-날짜 콘텐츠 이후의 하단 여백 */
       }
 
-      .section {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-
-        .desc > h3 {
+      .recent-title {
+        margin: 0 0 0.8rem 0; /* 1. 제목-태그 간격 확대: 0.8rem */
+        
+        & > h3 {
           margin: 0;
           & > a {
             background-color: transparent !important;
             padding: 0 !important;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
-            color: var(--secondary);
+            color: var(--dark);
             
             &:hover {
-              color: var(--tertiary);
+              color: var(--secondary);
             }
           }
         }
+      }
 
-        .tags {
-          list-style: none;
-          padding: 0;
+      .recent-tags {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0.2rem 0; /* 2. 태그-발행일 간격 축소: 0.2rem */
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.6rem;
+        
+        & > li {
           margin: 0;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          
-          & > li > a {
-            font-size: 0.85rem;
-          }
         }
 
-        .meta {
-          margin: 0;
-          font-size: 0.9rem;
-          opacity: 0.6;
-          color: var(--darkgray);
+        & > li > a {
+          font-size: 0.85rem;
+          opacity: 0.75;
         }
+      }
+
+      .recent-date {
+        margin: 0;
+        font-size: 0.85rem;
+        opacity: 0.6;
+        color: var(--darkgray);
       }
     }
   }

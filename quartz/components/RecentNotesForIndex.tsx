@@ -25,11 +25,8 @@ export default ((userOpts?: Partial<Options>) => {
     cfg,
   }: QuartzComponentProps) => {
     const opts = { ...defaultOptions, ...userOpts }
-    
-    // index 페이지가 아닐 경우 아무것도 렌더링하지 않음
     if (fileData.slug !== "index") return null
 
-    // 날짜순 정렬 및 자기 자신(index) 제외
     const pages = allFiles
       .filter((f) => f.slug !== "index")
       .sort(byDateAndAlphabetical(cfg))
@@ -47,7 +44,7 @@ export default ((userOpts?: Partial<Options>) => {
               <li class="recent-li">
                 <div class="section">
                   {/* 1. 제목 */}
-                  <div class="desc">
+                  <div class="recent-title">
                     <h3>
                       <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
                         {title}
@@ -55,9 +52,9 @@ export default ((userOpts?: Partial<Options>) => {
                     </h3>
                   </div>
 
-                  {/* 2. 태그 */}
+                  {/* 2. 태그 (순서: 제목 다음) */}
                   {opts.showTags && tags.length > 0 && (
-                    <ul class="tags">
+                    <ul class="recent-tags">
                       {tags.map((tag) => (
                         <li>
                           <a
@@ -71,11 +68,11 @@ export default ((userOpts?: Partial<Options>) => {
                     </ul>
                   )}
 
-                  {/* 3. 발행일 */}
+                  {/* 3. 발행일 (순서: 마지막) */}
                   {page.dates && (
-                    <p class="meta">
+                    <div class="recent-date">
                       <Date date={getDate(cfg, page)!} locale={cfg.locale} />
-                    </p>
+                    </div>
                   )}
                 </div>
               </li>
