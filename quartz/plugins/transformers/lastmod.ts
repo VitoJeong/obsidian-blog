@@ -60,9 +60,13 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
                 created ||= st.birthtimeMs
                 modified ||= st.mtimeMs
               } else if (source === "frontmatter" && file.data.frontmatter) {
-                created ||= (file.data.frontmatter.date ?? file.data.frontmatter.created) as MaybeDate
-                modified ||= (file.data.frontmatter.lastmod ?? file.data.frontmatter.modified) as MaybeDate
-                published ||= (file.data.frontmatter.publishDate ?? file.data.frontmatter.published) as MaybeDate
+                const fd = file.data.frontmatter
+                const frontmatterDate = (fd.date ?? fd.published ?? fd.publishDate ?? fd.created) as MaybeDate
+                const frontmatterModified = (fd.lastmod ?? fd.lastModified ?? fd.updated ?? fd.modified) as MaybeDate
+                
+                created ||= frontmatterDate
+                modified ||= frontmatterModified ?? frontmatterDate // 수정일이 없으면 생성일을 사용
+                published ||= frontmatterDate
               } else if (source === "git" && repo) {
                 try {
                   const relativePath = path.relative(repositoryWorkdir, fullFp)

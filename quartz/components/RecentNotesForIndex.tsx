@@ -1,12 +1,13 @@
-import { QuartzComponent, QuartzComponentProps } from "./types"
+import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import RecentNotes from "./RecentNotes"
 
-export default (() => {
+export default ((userOpts?: any) => {
   const RecentNotesComponent = RecentNotes({
     limit: 5,
     showTags: true,
-    linkToMore: "all-posts" as any, // "all-posts" 페이지가 있을 경우
-    filter: (f) => f.slug !== "index", // 자기 자신은 제외
+    linkToMore: "all-posts" as any,
+    filter: (f) => f.slug !== "index",
+    ...userOpts,
   })
 
   const RecentNotesForIndex: QuartzComponent = (props: QuartzComponentProps) => {
@@ -19,4 +20,4 @@ export default (() => {
 
   RecentNotesForIndex.css = RecentNotesComponent.css
   return RecentNotesForIndex
-})
+}) satisfies QuartzComponentConstructor
