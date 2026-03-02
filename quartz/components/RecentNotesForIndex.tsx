@@ -1,23 +1,91 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import RecentNotes from "./RecentNotes"
+import { FullSlug, resolveRelative } from "../util/path"
+import { byDateAndAlphabetical } from "./PageList"
+import { Date, getDate } from "./Date"
+import { i18n } from "../i18n"
+import { classNames } from "../util/lang"
+import style from "./styles/recentNotesForIndex.scss"
 
-export default ((userOpts?: any) => {
-  const RecentNotesComponent = RecentNotes({
-    limit: 5,
-    showTags: true,
-    linkToMore: false,
-    filter: (f) => f.slug !== "index",
-    ...userOpts,
-  })
+interface Options {
+  title?: string
+  limit: number
+  showTags: boolean
+}
 
-  const RecentNotesForIndex: QuartzComponent = (props: QuartzComponentProps) => {
-    const { fileData } = props
-    if (fileData.slug === "index") {
-      return <RecentNotesComponent {...props} />
-    }
-    return null
+const defaultOptions: Options = {
+  limit: 5,
+  showTags: true,
+}
+
+export default ((userOpts?: Partial<Options>) => {
+  const RecentNotesForIndex: QuartzComponent = ({
+    allFiles,
+    fileData,
+    displayClass,
+    cfg,
+  }: QuartzComponentProps) => {
+    const opts = { ...defaultOptions, ...userOpts }
+    
+    // index 페이지가 아닐 경우 아무것도 렌더링하지 않음
+    if (fileData.slug !== "index") return null
+
+    // 날짜순 정렬 및 자기 자신(index) 제외
+    const pages = allFiles
+      .filter((f) => f.slug !== "index")
+      .sort(byDateAndAlphabetical(cfg))
+      .slice(0, opts.limit)
+
+    return (
+      <div class={classNames(displayClass, "recent-notes-index")}>
+        <h3>{opts.title ?? i18n(cfg.locale).components.recentNotes.title}</h3>
+        <ul class="recent-ul">
+          {pages.map((page) => {
+            const title = page.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title
+            const tags = page.frontmatter?.tags ?? []
+
+            return (
+              <li class="recent-li">
+                <div class="section">
+                  {/* 1. 제목 */}
+                  <div class="desc">
+                    <h3>
+                      <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
+                        {title}
+                      </a>
+                    </h3>
+                  </div>
+
+                  {/* 2. 태그 */}
+                  {opts.showTags && tags.length > 0 && (
+                    <ul class="tags">
+                      {tags.map((tag) => (
+                        <li>
+                          <a
+                            class="internal tag-link"
+                            href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
+                          >
+                            {tag}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* 3. 발행일 */}
+                  {page.dates && (
+                    <p class="meta">
+                      <Date date={getDate(cfg, page)!} locale={cfg.locale} />
+                    </p>
+                  )}
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    )
   }
 
-  RecentNotesForIndex.css = RecentNotesComponent.css
+  RecentNotesForIndex.css = style
   return RecentNotesForIndex
 }) satisfies QuartzComponentConstructor

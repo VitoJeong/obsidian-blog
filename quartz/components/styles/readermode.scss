@@ -21,14 +21,27 @@
   }
 }
 
+// 리더 모드 활성화 시 사이드바 숨김 처리
 :root[reader-mode="on"] {
   & .sidebar.left,
   & .sidebar.right {
     opacity: 0;
-    transition: opacity 0.2s ease;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 
     &:hover {
       opacity: 1;
+      visibility: visible;
     }
+  }
+}
+
+// 리더 모드 비활성화 시 사이드바 명시적 표시 (Safari 대응)
+:root[reader-mode="off"] {
+  & .sidebar.left,
+  & .sidebar.right {
+    opacity: 1;
+    visibility: visible;
+    transition: none; // 모드 전환 시에만 애니메이션을 원할 경우 조정 가능
   }
 }
