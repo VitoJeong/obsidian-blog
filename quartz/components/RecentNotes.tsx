@@ -53,11 +53,6 @@ export default ((userOpts?: Partial<Options>) => {
                       </a>
                     </h3>
                   </div>
-                  {page.dates && (
-                    <p class="meta">
-                      <Date date={getDate(cfg, page)!} locale={cfg.locale} />
-                    </p>
-                  )}
                   {opts.showTags && (
                     <ul class="tags">
                       {tags.map((tag) => (
@@ -71,6 +66,11 @@ export default ((userOpts?: Partial<Options>) => {
                         </li>
                       ))}
                     </ul>
+                  )}
+                  {page.dates && (
+                    <p class="meta">
+                      <Date date={getDate(cfg, page)!} locale={cfg.locale} />
+                    </p>
                   )}
                 </div>
               </li>
