@@ -46,8 +46,8 @@ export default ((userOpts?: Partial<Options>) => {
             return (
               <li class="recent-li">
                 <div class="section">
-                  {/* 1. 제목 */}
-                  <div class="recent-title">
+                  {/* 1. 제목 영역 (desc) */}
+                  <div class="desc">
                     <h3>
                       <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
                         {title}
@@ -55,7 +55,7 @@ export default ((userOpts?: Partial<Options>) => {
                     </h3>
                   </div>
 
-                  {/* 2. 태그 */}
+                  {/* 2. 태그 영역 (tags) */}
                   {opts.showTags && tags.length > 0 && (
                     <ul class="tags">
                       {tags.map((tag) => (
@@ -71,11 +71,11 @@ export default ((userOpts?: Partial<Options>) => {
                     </ul>
                   )}
 
-                  {/* 3. 발행일 */}
+                  {/* 3. 날짜 영역 (meta) */}
                   {page.dates && (
-                    <div class="recent-date">
+                    <p class="meta">
                       <Date date={getDate(cfg, page)!} locale={cfg.locale} />
-                    </div>
+                    </p>
                   )}
                 </div>
               </li>
