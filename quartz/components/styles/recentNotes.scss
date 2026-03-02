@@ -8,23 +8,22 @@
   }
 
   & > ul.recent-ul {
-    list-style: none;
+    list-style: none !important;
     margin-top: 1rem;
     padding-left: 0;
 
     & > li.recent-li {
+      display: block !important;
       margin: 0;
-      padding: 1rem 0 1.2rem 0; /* 사용자 스타일 정보 적용 */
-      list-style: none;
-      line-height: 1.6rem; /* 사용자 스타일 정보 적용 */
+      padding: 1rem 0 0 0;
 
-      /* 사용자 제공 CSS: 수평선 구현 */
       &:not(:last-child):after {
         content: "";
         background-color: var(--lightgray);
         width: 100%;
         height: 1px;
-        margin-top: 1.2rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
         display: block;
       }
 
@@ -32,9 +31,8 @@
         display: flex;
         flex-direction: column;
 
-        /* 제목 (desc) */
-        .desc > h3 {
-          margin: 0 0 0.5rem 0;
+        .recent-title > h3 {
+          margin: 0 0 0.8rem 0;
           & > a {
             background-color: transparent !important;
             padding: 0 !important;
@@ -44,10 +42,9 @@
           }
         }
 
-        /* 태그 (tags) */
         .tags {
           list-style: none;
-          margin: 0 0 0.5rem 0; /* 간격 확보 */
+          margin: 0 0 0.5rem 0;
           padding: 0;
           display: flex;
           flex-wrap: wrap;
@@ -59,11 +56,9 @@
           }
         }
 
-        /* 날짜 (meta) */
-        .meta {
-          margin: 0;
-          font-size: 0.9rem;
+        .recent-date {
           opacity: 0.6;
+          font-size: 0.9rem;
           color: var(--darkgray);
         }
       }
