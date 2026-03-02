@@ -33,7 +33,7 @@ export default ((userOpts?: Partial<Options>) => {
       .slice(0, opts.limit)
 
     return (
-      <div class={classNames(displayClass, "recent-notes-index")}>
+      <div class={classNames(displayClass, "recent-notes")}>
         <h3>{opts.title ?? i18n(cfg.locale).components.recentNotes.title}</h3>
         <ul class="recent-ul">
           {pages.map((page) => {
@@ -42,8 +42,7 @@ export default ((userOpts?: Partial<Options>) => {
 
             return (
               <li class="recent-li">
-                <div class="section">
-                  {/* 1. 제목 */}
+                <div class="recent-header">
                   <div class="recent-title">
                     <h3>
                       <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
@@ -51,10 +50,15 @@ export default ((userOpts?: Partial<Options>) => {
                       </a>
                     </h3>
                   </div>
-
-                  {/* 2. 태그 (순서: 제목 다음) */}
+                  {page.dates && (
+                    <div class="recent-date">
+                      <Date date={getDate(cfg, page)!} locale={cfg.locale} />
+                    </div>
+                  )}
+                </div>
+                <div class="section">
                   {opts.showTags && tags.length > 0 && (
-                    <ul class="recent-tags">
+                    <ul class="tags">
                       {tags.map((tag) => (
                         <li>
                           <a
@@ -66,13 +70,6 @@ export default ((userOpts?: Partial<Options>) => {
                         </li>
                       ))}
                     </ul>
-                  )}
-
-                  {/* 3. 발행일 (순서: 마지막) */}
-                  {page.dates && (
-                    <div class="recent-date">
-                      <Date date={getDate(cfg, page)!} locale={cfg.locale} />
-                    </div>
                   )}
                 </div>
               </li>
