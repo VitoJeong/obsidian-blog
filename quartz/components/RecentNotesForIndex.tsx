@@ -5,7 +5,7 @@ export default ((userOpts?: any) => {
   const RecentNotesComponent = RecentNotes({
     limit: 5,
     showTags: true,
-    linkToMore: "all-posts" as any,
+    linkToMore: false,
     filter: (f) => f.slug !== "index",
     ...userOpts,
   })
