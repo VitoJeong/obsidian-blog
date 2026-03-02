@@ -1,7 +1,10 @@
 .recent-notes {
   & > h3 {
-    margin: 0.5rem 0 0 0;
-    font-size: 1rem;
+    margin: 4rem 0 1rem 0; /* 제목 위쪽 여백 조정 */
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--tertiary);
+    display: inline-block;
+    padding-bottom: 0.3rem;
   }
 
   & > ul.recent-ul {
@@ -9,62 +12,48 @@
     margin-top: 1rem;
     padding-left: 0;
 
-    & > li {
-      margin: 1rem 0;
-      .section > .desc > h3 > a {
-        background-color: transparent;
-      }
-
-      .section > .meta {
-        margin: 0 0 0.5rem 0;
-        opacity: 0.6;
-      }
-    }
-
-    // Enhanced layout for recent items: spacing, inline date, tags, and separator line
     & > li.recent-li {
       margin: 0;
-      padding: 1rem 0 1.2rem 0;
+      padding: 1.5rem 0; /* 위아래 여백을 충분히 주어 구분선이 돋보이게 */
+      border-bottom: 1px solid var(--lightgray);
 
-      &:not(:last-child)::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 1px;
-        background-color: var(--lightgray);
-        margin-top: 1rem;
+      &:last-child {
+        border-bottom: none; /* 마지막 항목 뒤에는 선 없음 */
       }
 
-      .recent-header {
+      .section {
         display: flex;
-        align-items: baseline;
-        gap: 0.75rem;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 0; /* 개별 마진으로 간격 조절 */
 
-        .recent-title {
-          margin: 0;
+        .recent-title > h3 {
+          margin: 0 0 0.8rem 0; /* 제목-태그 간격 확대 */
           & > a {
-            background-color: transparent;
+            background-color: transparent !important;
+            padding: 0 !important;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+          }
+        }
+
+        .tags {
+          list-style: none;
+          margin: 0 0 0.2rem 0; /* 태그-날짜 간격 축소 */
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.4rem 0.6rem;
+
+          & > li {
+            margin: 0;
           }
         }
 
         .recent-date {
           opacity: 0.6;
-          font-size: 0.95rem;
-          white-space: nowrap;
-        }
-      }
-
-      .section > ul.tags {
-        list-style: none;
-        margin: 0.5rem 0 0 0;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem 0.6rem;
-
-        & > li {
-          margin: 0;
+          font-size: 0.9rem;
+          color: var(--darkgray);
         }
       }
     }
