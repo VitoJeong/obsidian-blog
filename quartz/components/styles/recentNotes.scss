@@ -1,6 +1,6 @@
 .recent-notes {
   & > h3 {
-    margin: 4rem 0 1rem 0; /* 제목 위쪽 여백 조정 */
+    margin: 4rem 0 1rem 0;
     font-size: 1.5rem;
     border-bottom: 2px solid var(--tertiary);
     display: inline-block;
@@ -14,20 +14,26 @@
 
     & > li.recent-li {
       margin: 0;
-      padding: 1.5rem 0; /* 위아래 여백을 충분히 주어 구분선이 돋보이게 */
-      border-bottom: 1px solid var(--lightgray);
+      padding: 1rem 0 0 0;
+      display: flex;
+      flex-direction: column;
 
-      &:last-child {
-        border-bottom: none; /* 마지막 항목 뒤에는 선 없음 */
+      &:not(:last-child):after {
+        content: "";
+        background-color: var(--lightgray);
+        width: 100%;
+        height: 1px;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        display: block;
       }
 
       .section {
         display: flex;
         flex-direction: column;
-        gap: 0; /* 개별 마진으로 간격 조절 */
 
         .recent-title > h3 {
-          margin: 0 0 0.8rem 0; /* 제목-태그 간격 확대 */
+          margin: 0 0 0.8rem 0;
           & > a {
             background-color: transparent !important;
             padding: 0 !important;
@@ -39,15 +45,11 @@
 
         .tags {
           list-style: none;
-          margin: 0 0 0.2rem 0; /* 태그-날짜 간격 축소 */
+          margin: 0 0 0.2rem 0;
           padding: 0;
           display: flex;
           flex-wrap: wrap;
           gap: 0.4rem 0.6rem;
-
-          & > li {
-            margin: 0;
-          }
         }
 
         .recent-date {
