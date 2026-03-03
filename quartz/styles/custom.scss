@@ -16,14 +16,15 @@
     flex-direction: column;
 
     .desc {
-      margin-bottom: 1rem;
+      margin-bottom: 0.4rem;
 
       & > h3 {
         margin: 0;
+        font-size: 1.12rem;
         & > a {
           background-color: transparent !important;
           padding: 0 !important;
-          font-size: 1.3rem;
+          font-size: 1.12rem;
           font-weight: 600;
           color: var(--dark);
         }
