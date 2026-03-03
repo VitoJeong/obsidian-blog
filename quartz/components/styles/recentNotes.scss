@@ -16,50 +16,6 @@
       display: block !important;
       margin: 0;
       padding: 1rem 0 0 0;
-
-      & > hr.recent-divider {
-        border: none;
-        border-top: 1px solid var(--lightgray);
-        height: 0;
-        margin: 1.5rem 0;
-      }
-
-      .section {
-        display: flex;
-        flex-direction: column;
-
-        .desc > h3 {
-          margin: 0 0 1.2rem 0;
-          & > a {
-            background-color: transparent !important;
-            padding: 0 !important;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--dark);
-          }
-        }
-
-        .tags {
-          list-style: none;
-          margin: 0 0 0.3rem 0;
-          padding: 0;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.4rem 0.6rem;
-
-          & > li > a {
-            font-size: 0.85rem;
-            opacity: 0.75;
-          }
-        }
-
-        .meta {
-          opacity: 0.6;
-          font-size: 0.9rem;
-          color: var(--darkgray);
-          margin: 0.3rem 0 0 0;
-        }
-      }
     }
   }
 }

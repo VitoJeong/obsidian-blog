@@ -79,7 +79,7 @@ export default ((userOpts?: Partial<Options>) => {
                     </p>
                   )}
                 </div>
-                {!isLast && <hr class="recent-divider" />}
+                {!isLast && <div class="recent-divider"></div>}
               </li>
             )
           })}
