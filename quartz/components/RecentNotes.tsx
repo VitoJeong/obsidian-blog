@@ -39,9 +39,10 @@ export default ((userOpts?: Partial<Options>) => {
       <div class={classNames(displayClass, "recent-notes")}>
         <h3>{opts.title ?? i18n(cfg.locale).components.recentNotes.title}</h3>
         <ul class="recent-ul">
-          {pages.slice(0, opts.limit).map((page) => {
+          {pages.slice(0, opts.limit).map((page, index) => {
             const title = page.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title
             const tags = page.frontmatter?.tags ?? []
+            const isLast = index === Math.min(pages.length, opts.limit) - 1
 
             return (
               <li class="recent-li">
@@ -78,6 +79,7 @@ export default ((userOpts?: Partial<Options>) => {
                     </p>
                   )}
                 </div>
+                {!isLast && <hr class="recent-divider" />}
               </li>
             )
           })}

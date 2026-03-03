@@ -17,14 +17,11 @@
       margin: 0;
       padding: 1rem 0 0 0;
 
-      &:not(:last-child):after {
-        content: "";
-        background-color: var(--lightgray);
-        width: 100%;
+      & > hr.recent-divider {
+        border: none;
         height: 1px;
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
-        display: block;
+        background-color: var(--lightgray);
+        margin: 1.5rem 0;
       }
 
       .section {
