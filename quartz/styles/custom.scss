@@ -8,27 +8,31 @@
     width: 100%;
     height: 1px;
     background-color: var(--lightgray);
-    margin: 1.5rem 0;
+    margin: 0.8rem 0;
   }
 
   .section {
     display: flex;
     flex-direction: column;
 
-    .desc > h3 {
-      margin: 0 0 1.2rem 0;
-      & > a {
-        background-color: transparent !important;
-        padding: 0 !important;
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: var(--dark);
+    .desc {
+      margin-bottom: 1rem;
+
+      & > h3 {
+        margin: 0;
+        & > a {
+          background-color: transparent !important;
+          padding: 0 !important;
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: var(--dark);
+        }
       }
     }
 
     .tags {
       list-style: none;
-      margin: 0 0 0.3rem 0;
+      margin: 0;
       padding: 0;
       display: flex;
       flex-wrap: wrap;
@@ -44,7 +48,7 @@
       opacity: 0.6;
       font-size: 0.9rem;
       color: var(--darkgray);
-      margin: 0.3rem 0 0 0;
+      margin: 0.2rem 0 0 0;
     }
   }
 }
