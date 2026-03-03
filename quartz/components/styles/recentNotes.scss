@@ -19,8 +19,8 @@
 
       & > hr.recent-divider {
         border: none;
-        height: 1px;
-        background-color: var(--lightgray);
+        border-top: 1px solid var(--lightgray);
+        height: 0;
         margin: 1.5rem 0;
       }
 
@@ -28,8 +28,8 @@
         display: flex;
         flex-direction: column;
 
-        .recent-title > h3 {
-          margin: 0 0 0.8rem 0;
+        .desc > h3 {
+          margin: 0 0 1.2rem 0;
           & > a {
             background-color: transparent !important;
             padding: 0 !important;
@@ -41,7 +41,7 @@
 
         .tags {
           list-style: none;
-          margin: 0 0 0.5rem 0;
+          margin: 0 0 0.3rem 0;
           padding: 0;
           display: flex;
           flex-wrap: wrap;
@@ -53,10 +53,11 @@
           }
         }
 
-        .recent-date {
+        .meta {
           opacity: 0.6;
           font-size: 0.9rem;
           color: var(--darkgray);
+          margin: 0.3rem 0 0 0;
         }
       }
     }

@@ -4,7 +4,7 @@ import RecentNotes from "./RecentNotes"
 const RecentNotesForIndex: QuartzComponent = (props: QuartzComponentProps) => {
   if (props.fileData.slug === "index") {
     return RecentNotes({
-      title: "Recent Posts",
+      title: "최근 게시글",
       limit: 10,
       showTags: true,
       linkToMore: false,
